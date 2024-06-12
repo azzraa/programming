@@ -1,3 +1,5 @@
+package codecademy.Arrays.AnotherNewsfeed;
+
 public class AnotherNewsfeed {
   String[] topics = {"Opinion", "Tech", "Science", "Health"};
   int[] views = {0, 0, 0, 0};
@@ -13,3 +15,4 @@ public class AnotherNewsfeed {
     
   }
 }
+

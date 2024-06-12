@@ -1,4 +1,5 @@
-import java.util.Arrays;
+import java.util.codecademy.AnotherNewsfeed.Arrays;
+
 public class Main {
   public static void main(String[] args) {
     AnotherNewsfeed sampleFeed = new AnotherNewsfeed();
