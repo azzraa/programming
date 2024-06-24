@@ -1,8 +1,8 @@
-import java.io.Serializable;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 public class Cars implements Serializable {
   private String make;
@@ -10,11 +10,7 @@ public class Cars implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static void main(String[] args) throws FileNotFoundException, IOException {
-    Cars toyota = new Cars("Toyota", 2021);
-    Cars honda = new Cars("Honda", 2020);
     FileOutputStream fileOutputStream = new FileOutputStream("cars.txt");
     ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-    objectOutputStream.writeObject(toyota);
-    objectOutputStream.writeObject(honda);
   }
 }

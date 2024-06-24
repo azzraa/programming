@@ -6,6 +6,10 @@ public class CheckingAccount{
       name = inputName;
       balance = inputBalance;
     }
+
+    CheckingAccount(String mike, int i, Object object) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
     private void addFunds(int fundsToAdd){
       balance += fundsToAdd;
@@ -17,5 +21,9 @@ public class CheckingAccount{
   
     public void printBalance() {
       System.out.println("Account balance is " + balance);
+    }
+
+    void getBalance() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
   }

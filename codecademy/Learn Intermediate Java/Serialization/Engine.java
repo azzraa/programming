@@ -1,21 +1,20 @@
-import java.io.Serializable;
-import java.io.FileOutputStream;
 import java.io.FileInputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class CarAgain implements Serializable {
+class Engine implements Serializable {
   private String make;
   private int year;
   private Engine engine;
   private static final long serialVersionUID = 1L;
 
-  public CarAgain(String make, int year) {
+  public Engine(String make, int year) {
     this.make = make;
     this.year = year;
-    this.engine = new Engine(2.4, 6);
   }
 
   public String toString() {
@@ -23,8 +22,8 @@ public class CarAgain implements Serializable {
   }
 
   public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
-    CarAgain toyota = new CarAgain("Toyota", 2021);
-    CarAgain honda = new CarAgain("Honda", 2020);
+    Engine toyota = new Engine("Toyota", 2021);
+    Engine honda = new Engine("Honda", 2020);
     FileOutputStream fileOutputStream = new FileOutputStream("cars.txt");
     ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
     objectOutputStream.writeObject(toyota);
@@ -33,8 +32,8 @@ public class CarAgain implements Serializable {
     FileInputStream fileInputStream = new FileInputStream("cars.txt");
     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-    CarAgain toyotaCopy = (CarAgain) objectInputStream.readObject();
-    CarAgain hondaCopy = (CarAgain) objectInputStream.readObject();
+    Engine toyotaCopy = (Engine) objectInputStream.readObject();
+    Engine hondaCopy = (Engine) objectInputStream.readObject();
 
     boolean isSameObject = toyotaCopy == toyota;
     System.out.println("Toyota (Copy) - "+toyotaCopy);

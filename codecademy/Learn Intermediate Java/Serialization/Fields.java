@@ -1,10 +1,10 @@
-import java.io.Serializable;
-import java.io.FileOutputStream;
 import java.io.FileInputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 public class Fields implements Serializable {
   private String make;
@@ -36,9 +36,7 @@ public class Fields implements Serializable {
     Car toyotaCopy = (Car) objectInputStream.readObject();
     Car hondaCopy = (Car) objectInputStream.readObject();
 
-    boolean isSameObject = toyotaCopy == toyota;
     System.out.println("Toyota (Copy) - "+ toyotaCopy);
     System.out.println("Toyota (Original) - "+ toyota);
-    System.out.println("Is same object: "+ isSameObject);
   }
 }

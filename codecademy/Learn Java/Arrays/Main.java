@@ -1,5 +1,3 @@
-import java.util.codecademy.Arrays;
-
 public class Main {
     public static void main(String[] args) {
         String[] students = {"Sade", "Alexus", "Sam", "Koma"};

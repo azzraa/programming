@@ -11,6 +11,10 @@ public class CheckingAccount{
       this.interestRate = 0.02;
     }
     
+    public CheckingAccount(String string, int i) {
+        //TODO Auto-generated constructor stub
+    }
+
     public void getAccountInformation(){
       System.out.println("Money in account: " + this.getBalance());
       System.out.println("Next Month's Interest: " + this.calculateNextMonthInterest());
@@ -21,8 +25,13 @@ public class CheckingAccount{
   
     }
     
-    private int getBalance(){
+    int getBalance(){
       return this.balance;
+    }
+
+    public void setBalance(int i) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setBalance'");
     }
     
   }

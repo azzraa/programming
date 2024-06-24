@@ -1,19 +1,19 @@
-public class CheckingAccount{
-    public String name;
-    private int balance;
-    private String id;
-    
-    public CheckingAccount(String inputName, int inputBalance, String inputId){
-      name = inputName;
-      balance = inputBalance;
-      id = inputId;
-    }  
+public class CheckingAccount {
+  private String ownerName;
+  private double balance;
+  private String accountNumber;
   
-    public int getBalance() {
-      return this.balance; 
-    }
-  
-    public void setBalance(int newBalance) {
-      this.balance = newBalance;
-    }
+  public CheckingAccount(String ownerName, double balance, String accountNumber) {
+      this.ownerName = ownerName;
+      this.balance = balance;
+      this.accountNumber = accountNumber;
   }
+  
+  public double getBalance() {
+      return balance;
+  }
+  
+  public void setBalance(double balance) {
+      this.balance = balance;
+  }
+}

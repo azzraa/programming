@@ -7,13 +7,11 @@ public class Duplicate {
          }
        }
      }
-     
      return false;
    }
    
    
      public static void main(String[] args) {
-      array to test edge cases
        String[] groceryList = {"apples", "banana", "Apples", "chocolate"};
        System.out.println(hasDuplicates(groceryList));
      }

@@ -5,6 +5,10 @@ public class SavingsAccount {
       balance = initialBalance;
     }
       
+    public SavingsAccount(String string, int i) {
+        //TODO Auto-generated constructor stub
+    }
+
     public void checkBalance(){
       System.out.println("Hello!");
       System.out.println("Your balance is " + balance);
@@ -23,6 +27,11 @@ public class SavingsAccount {
       
     public String toString(){
       return "This is a savings account with " + balance + " saved.";
+    }
+
+    public void addMoney(int i) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addMoney'");
     }
            
   }

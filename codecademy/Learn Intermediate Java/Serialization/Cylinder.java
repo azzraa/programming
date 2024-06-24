@@ -1,10 +1,10 @@
-import java.io.Serializable;
-import java.io.FileOutputStream;
 import java.io.FileInputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 public class Cylinder implements Serializable {
   private String make;
@@ -15,14 +15,11 @@ public class Cylinder implements Serializable {
   public Cylinder(String make, int year) {
     this.make = make;
     this.year = year;
-    this.engine = new Engine(2.4, 6);
   }
 
  private void writeObject(ObjectOutputStream stream) throws IOException {
     stream.writeObject(this.make);
-    stream.writeInt(this.year);
-    stream.writeDouble(this.engine.getLiters());
-    stream.writeInt(this.engine.getCylinders());   
+    stream.writeInt(this.year); 
   }
  
   private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
@@ -30,7 +27,6 @@ public class Cylinder implements Serializable {
     this.year = (int) stream.readInt();
     double liters = (double) stream.readDouble();
     int cylinders = (int) stream.readInt();
-    this.engine = new Engine(liters, cylinders); 
   }    
 
 

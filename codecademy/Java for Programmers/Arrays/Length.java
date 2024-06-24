@@ -6,9 +6,7 @@ public class Length {
     }
   
     public static void main(String[] args) {
-   array to test edge cases
       String[] groceryList = {"apple", "milk", "banana", "bananas", "chocolate"};
-  
       System.out.println(getNumAllergicItems(groceryList));
     }
   }

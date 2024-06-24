@@ -1,5 +1,3 @@
-package codecademy.Arrays.ArrayList;
-
 import java.util.ArrayList;
 
 class ToDo {

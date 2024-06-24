@@ -1,9 +1,13 @@
-public class Bank{
-    public static void main(String[] args){
+public class Bank {
+  public static void main(String[] args) {
       CheckingAccount accountOne = new CheckingAccount("Zeus", 100, "1");
       CheckingAccount accountTwo = new CheckingAccount("Hades", 200, "2");
-      System.out.println(accountOne.getBalance());
+      
+      System.out.println(accountOne.getBalance()); // Output: 100.0
+      System.out.println(accountTwo.getBalance()); // Output: 200.0
+      
       accountOne.setBalance(5000);
-      System.out.println(accountOne.getBalance()); 
-    }
+      
+      System.out.println(accountOne.getBalance()); // Output: 5000.0
   }
+}
