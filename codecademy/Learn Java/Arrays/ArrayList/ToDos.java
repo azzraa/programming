@@ -15,7 +15,7 @@ class ToDos {
   
     System.out.println(toDoList);
 
-{
+    {
     
     // Sherlock
     ArrayList<String> sherlocksToDos = new ArrayList<String>();
