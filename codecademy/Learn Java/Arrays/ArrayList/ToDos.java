@@ -27,7 +27,7 @@ class ToDos {
     sherlocksToDos.add("apprehend the criminal");
     
     // Poirot
-    ArrayList<String> poirotsToDos = new ArrayList<String>();
+    ArrayList<String> pocopirotsToDos = new ArrayList<String>();
     
     poirotsToDos.add("visit the crime scene");
     poirotsToDos.add("interview suspects");
