@@ -7,6 +7,7 @@ public class Hashtag {
       System.out.println(hashtag.toLowerCase());
       
       
+      
     }
     
   }
