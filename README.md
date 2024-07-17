@@ -26,4 +26,4 @@ The student acknowledges and agrees that the use of AI is strictly prohibited du
 
 Remember, this checklist is not exhaustive, but it should help you ensure that your work is complete, well-structured, and meets the required standards.
 
-##Questions
+## Questions
