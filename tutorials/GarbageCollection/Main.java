@@ -1,4 +1,4 @@
-package tutorials.Garbage Collection;
+package tutorials.GarbageCollection;
 
 public class Main {
     public static void main(String[] args) {

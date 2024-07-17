@@ -1,4 +1,4 @@
-package codecademy.Loops;
+package codecademy.LearnJava.Loops;
 import java.util.ArrayList;
 
 class MostExpensive {

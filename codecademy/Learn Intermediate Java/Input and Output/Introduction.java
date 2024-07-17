@@ -1,3 +1,6 @@
+// Used for reading input from various sources, 
+// including user input from the console
+// It provides methods for parsing primitive types and strings
 import java.util.Scanner;
 
 public class Introduction {

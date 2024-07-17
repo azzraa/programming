@@ -1,4 +1,4 @@
-package.tutorials;
+package tutorials.MemoryUsage;
 
 public class MemoryUsage {
     /**

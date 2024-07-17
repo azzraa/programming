@@ -1,4 +1,4 @@
-package codecademy.Loops;
+package codecademy.LearnJava.Loops;
 
 public class Numbers {
     public static void main(String[] args) {
