@@ -12,4 +12,11 @@ public class Store {
       System.out.println("Selling " + productType + "!");
       System.out.println("Come spend some money!");
     }  
+
+  public class MainStore {
+    public static void main(String[] args) {
+      Store lemonadeStand = new Store("Coffee");
+      lemonadeStand.advertise();
+    }
   }
+}

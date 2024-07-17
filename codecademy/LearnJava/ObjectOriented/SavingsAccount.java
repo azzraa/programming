@@ -1,3 +1,4 @@
+// Creates an object of the Savings class and performs various operations on it
 public class SavingsAccount {
     public static void main(String[] args) {
         // Create a Savings object with an initial balance of 2000
@@ -29,6 +30,7 @@ public class SavingsAccount {
     }
 }
 
+// Class to represent a savings account
 class Savings {
     // Instance variable to store the balance
     private int balance;
