@@ -8,7 +8,8 @@ import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 // Encapsulates attributes related to the game (boardWidth, boardHeight, birdX, birdY, birdImg etc.)
-public class FlutteringFlora extends JPanel implements ActionListener, KeyListener { // Extends JPanel to create a game panel
+public class FlutteringFlora extends JPanel implements ActionListener, KeyListener {
+    
     // Game Window
     private int boardWidth = 360;
     private int boardHeight = 640;
@@ -25,7 +26,11 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
     private int birdWidth = 34;
     private int birdHeight = 24;
 
-    // Defined in FlutteringFlora
+    // Buttons
+    private JButton restartButton; // Declare as instance variable
+    private JButton exitButton; // Declare as instance variable
+
+    // Bird class
     class Bird {
         int x = birdX;
         int y = birdY;
@@ -55,7 +60,7 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
         }
     }
 
-    // Defined in FlutteringFlora
+    // OpponentBird class (Defined within FlutteringFlora class)
     class OpponentBird {
         int x;
         int y;
@@ -64,47 +69,44 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
         int velocityX;
         int velocityY;
         Image img;
-        
+
         OpponentBird(Image img) {
             this.img = img;
-            this.width = 34; 
-            this.height = 24; 
-            this.x = boardWidth * 3 / 4; 
-            this.y = boardHeight / 2; 
+            this.width = 34;
+            this.height = 24;
+            this.x = boardWidth;
+            this.y = boardHeight / 2;
             this.velocityX = -2;
-            this.velocityY = 0; 
+            this.velocityY = 0;
         }
-    
+
         void move() {
             x += velocityX;
             y += velocityY;
-        
-            if (x <= 0 || x + width >= boardWidth) {
-                velocityX *= -1;
-            }
-    
-            if (y <= 0 || y + height >= boardHeight) {
-                velocityY *= -1;
+
+            if (x <= -width) {
+                x = boardWidth;
+                y = boardHeight / 2;;
             }
         }
-    
+
         void draw(Graphics g) {
             g.drawImage(img, x, y, width, height, null);
         }
-    
+
         Rectangle getBounds() {
             return new Rectangle(x, y, width, height);
         }
     }
-    
-    
+
     // Pipe class
     private int pipeX = boardWidth;
     private int pipeY = 0;
     private int pipeWidth = 64;
     private int pipeHeight = 512;
 
-    // Defined in FlutteringFlora
+
+    // Defined within FlutterinFlora
     class Pipe {
         int x = pipeX;
         int y = pipeY;
@@ -137,19 +139,40 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
     // Sound
     private Clip jumpSound;
 
-    FlutteringFlora() {
+    public FlutteringFlora() {
         setPreferredSize(new Dimension(boardWidth, boardHeight));
         setBackground(Color.PINK);
         setFocusable(true);
         addKeyListener(this);
 
-        // Images
+        // Initialize buttons
+        restartButton = new JButton("Restart");
+        restartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                restartGame();
+            }
+        });
+        restartButton.setVisible(false); // Initially hide restart button
+        add(restartButton);
+
+        exitButton = new JButton("Exit");
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        exitButton.setVisible(false); // Initially hide exit button
+        add(exitButton);
+
+        // Load images
         birdImg = new ImageIcon(getClass().getResource("/resources/flutteringflora.png")).getImage();
         topPipeImg = new ImageIcon(getClass().getResource("/resources/toppipe.png")).getImage();
         bottomPipeImg = new ImageIcon(getClass().getResource("/resources/bottompipe.png")).getImage();
         opponentBirdImg = new ImageIcon(getClass().getResource("/resources/opponent.png")).getImage();
 
-        // Sound
+        // Load sound
         try {
             AudioInputStream jumpAudioIn = AudioSystem.getAudioInputStream(getClass().getResource("/resources/jump.wav"));
             jumpSound = AudioSystem.getClip();
@@ -158,12 +181,12 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
             e.printStackTrace();
         }
 
-        // Initialize birds
+        // Initialize Birds and Pipes
         bird = new Bird(birdImg);
-        opponentBird = new OpponentBird(opponentBirdImg); // Initialize opponent bird
+        opponentBird = new OpponentBird(opponentBirdImg);
         pipes = new ArrayList<>();
 
-        // Place pipes timer
+        // Timer for placing pipes
         placePipeTimer = new Timer(1500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -172,11 +195,12 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
         });
         placePipeTimer.start();
 
-        // Game loop timer
+        // Timer for game loop
         gameLoop = new Timer(1000 / 60, this);
         gameLoop.start();
     }
 
+    // Method to place pipes
     void placePipes() {
         int randomPipeY = (int) (pipeY - pipeHeight / 4 - Math.random() * (pipeHeight / 2));
         int openingSpace = boardHeight / 4;
@@ -190,6 +214,7 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
         pipes.add(bottomPipe);
     }
 
+    // Override paintComponent to draw graphics
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -200,12 +225,10 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
         bird.draw(g);
         opponentBird.draw(g);
 
-        for (int i = 0; i < pipes.size(); i++) {
-            Pipe pipe = pipes.get(i);
+        for (Pipe pipe : pipes) {
             g.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height, null);
         }
 
-        // Draw score and game over screen
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.PLAIN, 32));
         if (gameOver) {
@@ -218,19 +241,17 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
     }
 
     public void move() {
-        // Move bird
         velocityY += gravity;
         bird.y += velocityY;
         bird.y = Math.max(bird.y, 0);
 
-        // Move opponent bird
         opponentBird.move();
 
         // Check collision with opponent bird
         if (bird.getBounds().intersects(opponentBird.getBounds())) {
-            gameOver = true; // Game over if collided with opponent bird
+            gameOver = true; // Game over if collision with opponent bird
             if (score > highScore) {
-                highScore = (int) score; // Update high score
+                highScore = (int) score;
             }
         }
 
@@ -241,7 +262,7 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
 
             // Check if bird passed the pipe
             if (!pipe.passed && bird.x > pipe.x + pipe.width) {
-                score += 0.5; // Increment score
+                score += 0.5;
                 pipe.passed = true;
             }
 
@@ -249,7 +270,7 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
             if (collision(bird, pipe)) {
                 gameOver = true;
                 if (score > highScore) {
-                    highScore = (int) score; // Update high score
+                    highScore = (int) score;
                 }
             }
         }
@@ -258,11 +279,12 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
         if (bird.y > boardHeight) {
             gameOver = true;
             if (score > highScore) {
-                highScore = (int) score; // Update high score
+                highScore = (int) score;
             }
         }
     }
 
+    // Method to handle collision detection
     boolean collision(Bird a, Pipe b) {
         return a.x < b.x + b.width &&
                a.x + a.width > b.x &&
@@ -270,13 +292,18 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
                a.y + a.height > b.y;
     }
 
+    // ActionListener implementation
     @Override
     public void actionPerformed(ActionEvent e) {
-        move(); // Move bird, opponent bird and pipes
-        repaint(); 
+        move(); // Move game objects
+        repaint(); // Redraw graphics
+
+        // Check game over condition
         if (gameOver) {
             placePipeTimer.stop(); // Stop placing pipes
             gameLoop.stop(); // Stop game loop
+            restartButton.setVisible(true); // Show restart button
+            exitButton.setVisible(true); // Show exit button
         }
     }
 
@@ -286,20 +313,30 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
             if (gameOver) {
                 restartGame(); // Restart game if game over
             } else {
-                bird.jump();
+                bird.jump(); // Bird jumps
             }
         }
     }
 
+    // Method to restart the game
     private void restartGame() {
-        bird.x = birdX; 
+        bird.x = birdX;
         bird.y = birdY;
         velocityY = 0;
-        pipes.clear(); 
-        gameOver = false; 
-        score = 0; // Reset score
-        placePipeTimer.start(); 
-        gameLoop.start(); // Restart game loop
+
+        // Clear pipes and reset game state
+        pipes.clear();
+        gameOver = false;
+        score = 0;
+
+        // Restart timers
+        placePipeTimer.start();
+        gameLoop.start();
+
+        restartButton.setVisible(false);
+        exitButton.setVisible(false);
+
+        requestFocus();
     }
 
     @Override
