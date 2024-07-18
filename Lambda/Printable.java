@@ -1,4 +1,4 @@
-package tutorials.Lambda;
+package Lambda;
 
 @FunctionalInterface
 public interface  Printable {

@@ -1,3 +1,5 @@
+package Inheritance.Food;
+
 class Noodle {
     protected double lengthInCentimeters;
     protected double widthInCentimeters;

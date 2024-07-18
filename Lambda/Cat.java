@@ -1,4 +1,4 @@
-package tutorials.Lambda;
+package Lambda;
 
 public class Cat implements Printable {
 

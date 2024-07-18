@@ -1,4 +1,4 @@
-package tutorials.Lambda;
+package Lambda;
  
 public class Lambdas {     
     public static void main(String[] args) {
