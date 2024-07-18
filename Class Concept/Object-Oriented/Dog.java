@@ -1,21 +1,25 @@
 public class Dog {
-    private String name;
-  
-    public Dog(String name) {
+  // Fields with access modifiers
+  private String name; // Access modifier is private, no acces from outside
+
+  // Constructor
+  public Dog(String name) { // Every dog object must have a name
       this.name = name;
-    }
-  
-    public String getName() {
-      return name;
-    }
-  
-    public void setName(String newName) {
-      name = newName;
-    }
-  
-    public static void main(String[] args) {
-      Dog myDog = new Dog("Lassie");
-      System.out.println(myDog.getName());
-    }
-  
   }
+
+  // Getter for name (public access)
+  public String getName() {
+      return name;
+  }
+
+  // Setter for name (public access)
+  public void setName(String newName) {
+      name = newName;
+  }
+
+  public static void main(String[] args) {
+      // Creating a new Dog object using the constructor
+      Dog myDog = new Dog("Lassie");
+      System.out.println(myDog.getName()); // Output: Lassie
+  }
+}
