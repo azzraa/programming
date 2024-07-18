@@ -1,4 +1,4 @@
-package tutorials.Multithreading;
+package Multithreading;
 
 public class Multithreading {
 

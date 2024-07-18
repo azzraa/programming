@@ -1,5 +1,3 @@
-package tutorials.GarbageCollection;
-
 public class Main {
     public static void main(String[] args) {
         // Calls the doCatStuff method and then prints a message
