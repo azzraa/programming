@@ -7,7 +7,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
 
-// Encapsulates attributes related to the game, such as boardWidth, boardHeight, birdX, birdY, birdImg etc.
+// Encapsulates attributes related to the game (boardWidth, boardHeight, birdX, birdY, birdImg etc.)
 public class FlutteringFlora extends JPanel implements ActionListener, KeyListener { // Extends JPanel to create a game panel
     // Game Window
     private int boardWidth = 360;
@@ -17,7 +17,7 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
     private Image birdImg;
     private Image topPipeImg;
     private Image bottomPipeImg;
-    private Image opponentBirdImg; // Added opponent bird image
+    private Image opponentBirdImg;
 
     // Bird
     private int birdX = boardWidth / 8;
@@ -25,7 +25,7 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
     private int birdWidth = 34;
     private int birdHeight = 24;
 
-    // Defined within FlutteringFlora
+    // Defined in FlutteringFlora
     class Bird {
         int x = birdX;
         int y = birdY;
@@ -55,7 +55,7 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
         }
     }
 
-    // Defined within FlutteringFlora
+    // Defined in FlutteringFlora
     class OpponentBird {
         int x;
         int y;
@@ -67,20 +67,18 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
         
         OpponentBird(Image img) {
             this.img = img;
-            this.width = 34; // Adjust width as needed
-            this.height = 24; // Adjust height as needed
-            this.x = boardWidth * 3 / 4; // Initial x position (adjust as needed)
-            this.y = boardHeight / 2; // Initial y position (adjust as needed)
-            this.velocityX = -2; // Initial horizontal velocity (adjust as needed)
-            this.velocityY = 0; // Initial vertical velocity (adjust as needed)
+            this.width = 34; 
+            this.height = 24; 
+            this.x = boardWidth * 3 / 4; 
+            this.y = boardHeight / 2; 
+            this.velocityX = -2;
+            this.velocityY = 0; 
         }
     
         void move() {
-            // Example movement logic (you can customize this)
-            x += velocityX; // Horizontal movement
-            y += velocityY; // Vertical movement
-    
-            // Example: Reverse direction if hitting walls (adjust as needed)
+            x += velocityX;
+            y += velocityY;
+        
             if (x <= 0 || x + width >= boardWidth) {
                 velocityX *= -1;
             }
@@ -106,7 +104,7 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
     private int pipeWidth = 64;
     private int pipeHeight = 512;
 
-    // Defined within FlutteringFlora
+    // Defined in FlutteringFlora
     class Pipe {
         int x = pipeX;
         int y = pipeY;
@@ -123,8 +121,8 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
     // Game logic
     private Bird bird;
     private OpponentBird opponentBird;
-    private int velocityX = -4; // Pipe movement speed
-    private int velocityY = 0; // Bird movement speed (up/down)
+    private int velocityX = -4;
+    private int velocityY = 0;
     private int gravity = 1;
 
     private ArrayList<Pipe> pipes;
@@ -145,13 +143,13 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
         setFocusable(true);
         addKeyListener(this);
 
-        // Load images
+        // Images
         birdImg = new ImageIcon(getClass().getResource("/resources/flutteringflora.png")).getImage();
         topPipeImg = new ImageIcon(getClass().getResource("/resources/toppipe.png")).getImage();
         bottomPipeImg = new ImageIcon(getClass().getResource("/resources/bottompipe.png")).getImage();
         opponentBirdImg = new ImageIcon(getClass().getResource("/resources/opponent.png")).getImage();
 
-        // Load sounds
+        // Sound
         try {
             AudioInputStream jumpAudioIn = AudioSystem.getAudioInputStream(getClass().getResource("/resources/jump.wav"));
             jumpSound = AudioSystem.getClip();
@@ -160,7 +158,7 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
             e.printStackTrace();
         }
 
-        // Initialize bird
+        // Initialize birds
         bird = new Bird(birdImg);
         opponentBird = new OpponentBird(opponentBirdImg); // Initialize opponent bird
         pipes = new ArrayList<>();
@@ -199,12 +197,9 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
     }
 
     public void draw(Graphics g) {
-        // Draw bird
         bird.draw(g);
-        // Draw opponent bird
         opponentBird.draw(g);
 
-        // Draw pipes
         for (int i = 0; i < pipes.size(); i++) {
             Pipe pipe = pipes.get(i);
             g.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height, null);
@@ -277,8 +272,8 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        move(); // Move player's bird, opponent bird, and pipes
-        repaint(); // Redraw screen
+        move(); // Move bird, opponent bird and pipes
+        repaint(); 
         if (gameOver) {
             placePipeTimer.stop(); // Stop placing pipes
             gameLoop.stop(); // Stop game loop
@@ -291,19 +286,19 @@ public class FlutteringFlora extends JPanel implements ActionListener, KeyListen
             if (gameOver) {
                 restartGame(); // Restart game if game over
             } else {
-                bird.jump(); // Bird jump action
+                bird.jump();
             }
         }
     }
 
     private void restartGame() {
-        bird.x = birdX; // Reset bird position
+        bird.x = birdX; 
         bird.y = birdY;
-        velocityY = 0; // Reset velocity
-        pipes.clear(); // Clear pipes
-        gameOver = false; // Reset game over flag
+        velocityY = 0;
+        pipes.clear(); 
+        gameOver = false; 
         score = 0; // Reset score
-        placePipeTimer.start(); // Restart pipe placement
+        placePipeTimer.start(); 
         gameLoop.start(); // Restart game loop
     }
 
