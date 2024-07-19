@@ -168,6 +168,8 @@ In my game I used attributes for the game windows, the images and also the birds
 Please showcase **two** areas **where** you have used object orientation in your project. (How and why you use it will be the next question below.)
 Examples in Java of good oo design are composition, encapsulation, inheritance, polymorphism, and abstraction. 
 
+https://github.com/azzraa/programming/blob/main/Project/FlutteringFlora/FlutteringFlora.java
+
 In my game I used inheritance with JPanel, which allows FlutteringFlora to encapsulate the game's functionality. The Bird and the Pipe classes are also using inheritance of FlutteringFlora because it makes it easier to manage the interactions with the collision between birds and pipes and also the opponent bird. With inheritance it gives our game a better logic, making it easier to organize, especially between classes and methods.
 
 As I already said I used a lot of encapsulation in my game by having different private variables and public methods to really controll the bird, the pipes and the opponent bird. The Fluttering Flora class is public but the variables in there, so boardWidth and Height are encapsulated, so private and not accessible by other classes.
