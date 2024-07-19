@@ -255,8 +255,8 @@ In my game I wanted to add a sound to my game, so when I presses a key I wanted 
 multi-threading is the ability of a CPU to execute multiple processes or threads concurrently. Please explain the concept of multi-threading and provide an example of how you have used multi-threading in your code. The link does not have to be to your project and can be to your practice code.
 
 https://github.com/azzraa/programming/tree/main/Multithreading
-In Multithreading we can run multiple threads at once, so we have a file calles MultithreadThing, where we have a Runnable interface and a run method. We implemented a threadNumber to specify the thread instance. And then it prints out the numbers 1 to 5 with the threadNumber in the run method that we started.
-In our file Multithreading we have a main methods, where we use a for loop to iterate through the instances of our MultiplethreadThing. For all the 5 iterations, there will be 5 unique Numbers for all the Threads. We can start each thread using the run method from MultithreadThing.
+In Multithreading we can run multiple threads at once, so we have a file called MultithreadThing, where we have a Runnable interface and a run method. We implemented a threadNumber to specify the thread instance. And then it prints out the numbers 1 to 5 with the threadNumber in the run method that we started.
+In our file Multithreading we have a main method, where we use a for loop to iterate through the instances of our MultiplethreadThing. For all the 5 iterations, there will be 5 unique Numbers for all the Threads. We can start each thread using the run method from MultithreadThing.
 We use aus Runnable interface to define task that can be executed by a thread and with our Multithreading  we create and starts the threads.
 
 
@@ -276,9 +276,8 @@ Please explain the concept of lambda expressions and provide an example of how y
 https://github.com/azzraa/programming/tree/main/Lambda
 
 I have a Printable file code, which is an interface and it has only one method print(String suffix). We need this only one method to make it work for our Lambda expression. 
-We have another file of code in Cat, where Cat implements the interface in Printable to get access to the print method above.
-In our main method of the Lambdas class, we create a lambda expression (s) -> "Meow " + s to create an instance of the Printable and adds Meow the toe suffix(s).
-With lambda expressions we can implement interfaces with a single abstract method, so in our Cat example, the lambda expression (s) -> "Meow " + s  is used privately for our Printable interface for printing. 
+We have another file of code in Cat, where Cat implements the interface in Printable to get access to the print method above. In our main method of the Lambdas class, we create a lambda expression (s) -> "Meow " + s to create an instance of the Printable and adds Meow the toe suffix(s).
+With lambda expressions we can implement interfaces with a single method, so in our Cat example, the lambda expression (s) -> "Meow " + s  is used privately for our Printable interface for printing. 
 
 
 | Total Achievable Points | Points Reached During Grading |
@@ -296,7 +295,7 @@ https://github.com/azzraa/programming/blob/main/Advanced%20Topics/Serialization/
 
 Using seralization helps to be saved to a file and send to a network
 
-First we need to import the Seriazable package. In our class Car we can implement the Seriziable. We have our serialVersionUID in the Car class that can react to this class, so we have an unique identifier, and we defined it to 1L because we don't want to break the capability of the seralization. We also have make and year as attributes in the Car. We want to have the compability between the serialized object and the class attributes (make and year).
+First we need to import the Serializable package. In our class Car we can implement the Seriziable. We have our serialVersionUID in the Car class that can react to this class, so we have an unique identifier, and we defined it to 1L because we don't want to break the capability of the seralization. We also have make and year as attributes in the Car. We want to have the compability between the serialized object and the class attributes (make and year).
 After that we have the getYear() and getMake() methofs to return the year and make of the Car class.
 Then we will print out the Car, the make and the year in our toString() method.
 
