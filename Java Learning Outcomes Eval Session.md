@@ -246,6 +246,9 @@ https://github.com/azzraa/programming/blob/main/Project/FlutteringFlora/Flutteri
 
 In my game I wanted to add a sound to my game, so when I presses a key I wanted to be able to hear a sound and for that it was not only enough to add a sound resource in the code, I also had to import the Audio packages, so I used 3 different libraries to be able to hear and play sound: import javax.sound.sampled.AudioInputStream; import javax.sound.sampled.AudioSystem; import javax.sound.sampled.Clip; With these libraries I was able to load the sound and play the sound in my game.
 
+https://github.com/azzraa/programming/blob/main/Project/FlutteringFlora/App.java
+Here I also imported the swing library to my App.java to start the application of my game.
+
 | Total Achievable Points | Points Reached During Grading |
 |------------------------|-------------------------------|
 |                        |                               |
